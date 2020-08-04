@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  border: dashed 1px green;
+  width: 120px;
+  height: 120px;
+  margin: 3px;
+}
+
+.active {
+  background-image: url('/src/img/goblin.png');
+}

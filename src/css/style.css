@@ -2,8 +2,16 @@
   box-sizing: border-box;
 }
 
-body {
+body, .player {
   margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.player {
+ padding-left: 3px;
 }
 
 .board {
@@ -16,6 +24,11 @@ body {
   width: 120px;
   height: 120px;
   margin: 3px;
+  cursor: url('/src/img/molot.cur') 30 30, pointer;
+}
+
+.clicked {
+  cursor: url('/src/img/molot_smash.cur') 40 15, pointer;
 }
 
 .active {

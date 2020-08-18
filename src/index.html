@@ -6,6 +6,29 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="board"></div>
+    <div class="popups invis">
+      <div class="popupStart invis">
+        <div class="container">
+          <p class="entrance">Введите имя</p>
+          <label class="label">
+            <input type="text" class="input" required placeholder="Например: Вася" />
+            <button class="button start" type="button">Я не трус!</button>
+          </label>
+          <p class="rules">
+            Правила игры: УБЕЙ гоблинов кувалдой! <br />
+            Пропустишь пятерых и УМРЁШЬ!
+          </p>
+        </div>
+      </div>
+      <div class="popupGameOver invis">
+        <div class="container">
+          <p class="entrance">Ты был съеден гоблинами</p>
+          <button class="button loose" type="button">В реальной жизни другого шанса бы не было</button>
+        </div>
+      </div>
+    </div>
+    <div class="boardBody">
+      <div class="board"></div>
+    </div>
   </body>
 </html>

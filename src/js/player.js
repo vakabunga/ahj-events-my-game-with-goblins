@@ -1,6 +1,6 @@
 export default class Player {
   constructor() {
-    this.name = name;
+    this.name = '';
     this.score = 0;
     this.loss = 0;
   }

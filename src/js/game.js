@@ -1,7 +1,8 @@
-import EventListeners from './eventsListeners';
-import Board from './board';
-import Popups from './popups';
-import Player from './player';
+import EventListeners from './eventsListeners.js';
+import Board from './board.js';
+import Popups from './popups.js';
+import Player from './player.js';
+
 export default class Game {
   constructor() {
     this.popups = new Popups(document.querySelector('.popups'));
@@ -12,9 +13,10 @@ export default class Game {
     this.player = new Player();
     this.oldCell = 0;
     this.oldScore = 0;
-    this.theGameBegins;
+    this.theGameBegins = 0;
   }
 
+  // eslint-disable-next-line no-undef
   enter(callback = f) {
     this.popups.show();
     this.popupStart.show();
@@ -39,25 +41,27 @@ export default class Game {
   play() {
     // прячем гоблина
     this.board.hideGoblin(this.oldCell);
-    // проверяем успел ли убить игрок гоблина, если нет, то плюсуем к пропущенным гоблинам, обновляем данные игрока
+    // проверяем успел ли убить игрок гоблина,
+    // если нет, то плюсуем к пропущенным гоблинам, обновляем данные игрока
     if (this.player.score === this.oldScore) {
       this.player.loss += 1;
       this.player.refreshData();
     }
     // проверяем проиграл ли игрок
     if (this.player.loss === 5) {
-      return this.gameOver();
+      this.gameOver();
+    } else {
+      // выбираем рандомную ячейку для отображения гоблина
+      let cell = this.board.randomCell();
+      // проверяем чтобы рандомная ячейка не совпадала с предыдущей
+      while (this.oldCell === cell) {
+        cell = this.board.randomCell();
+      }
+      // отображаем гоблина
+      this.board.showGoblin(cell);
+      // присваиваем старому значению ячейки текущее значение (требуется для проверки повторения)
+      this.oldCell = cell;
     }
-    // выбираем рандомную ячейку для отображения гоблина
-    const cell = this.board.randomCell();
-    // проверяем чтобы рандомная ячейка не совпадала с предыдущей
-    while (this.oldCell === cell) {
-      const cell = this.board.randomCell();
-    }
-    // отображаем гоблина
-    this.board.showGoblin(cell);
-    // присваиваем старому значению ячейки текущее значение (требуется для проверки повторения)
-    this.oldCell = cell;
   }
 
   gameOver() {
@@ -72,10 +76,11 @@ export default class Game {
       this.popups.close();
       this.theGameBegins = setInterval(() => {
         this.play();
-        // создаем событие по клику на доске. Если нажал на ячейку с гоблином, то прячем гоблина, плюсуем очко и обновляем данные
+        // создаем событие по клику на доске.
+        // Если нажал на ячейку с гоблином, то прячем гоблина, плюсуем очко и обновляем данные
         EventListeners.click(this.board.board, (target) => {
           if (target.classList.contains('active')) {
-            this.board.hideGoblin(cell);
+            this.board.hideGoblin(target);
             this.player.score += 1;
             this.player.refreshData();
           }

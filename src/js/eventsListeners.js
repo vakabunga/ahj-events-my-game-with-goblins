@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export default class EventsListener {
   static cellMouseDown(target) {
     target.addEventListener('mousedown', (event) => {

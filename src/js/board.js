@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 export default class Board {
   constructor(board) {
     this.board = board;
@@ -5,11 +6,10 @@ export default class Board {
 
   init(size) {
     // отрисовка доски, входной параметр - массив из двух данных
-    const board = document.querySelector('.board');
     let counterId = 1;
     for (let row = 0; row < size[0]; row += 1) {
       for (let col = 0; col < size[1]; col += 1) {
-        board.insertAdjacentHTML('beforeend', `<div class="cell" id=${counterId}></div>`);
+        this.board.insertAdjacentHTML('beforeend', `<div class="cell" id=${counterId}></div>`);
         counterId += 1;
       }
     }
@@ -25,7 +25,7 @@ export default class Board {
           <div class="playerScore">Счёт: <span class="score"></span></div>
           <div class="playerLoss">Пропущенные гоблины: <span class="loss"></span></div>
         </div>
-      </div>`
+      </div>`,
     );
   }
 

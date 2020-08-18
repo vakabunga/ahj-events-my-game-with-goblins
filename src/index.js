@@ -1,8 +1,7 @@
 import './css/style.css';
-import './js/app';
-import './js/board';
-import './js/eventsListeners';
-import './js/game';
-import './js/player';
-import './js/popups';
-
+import './js/app.js';
+import './js/board.js';
+import './js/eventsListeners.js';
+import './js/game.js';
+import './js/player.js';
+import './js/popups.js';
